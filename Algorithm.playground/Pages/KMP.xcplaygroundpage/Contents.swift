@@ -43,4 +43,29 @@ func calculateNextArray(_ pattern: String) -> [Int] {
     return next
 }
 
-calculateNextArray("ABCBCDABCAF")
+/*
+ 功能:
+ */
+func search_KMP(_ text: String, _ pattern: String) -> Int {
+    var find_index = 0
+    var pattern_index = 0
+    let next = calculateNextArray(pattern)
+    
+    while find_index < pattern.count, pattern_index < pattern.count {
+        let textChar = (text as NSString).character(at: find_index)
+        let patternChar = (pattern as NSString).character(at: pattern_index)
+        if  textChar == patternChar {
+            find_index += 1
+            pattern_index += 1
+        } else {
+            pattern_index = next[pattern_index > 1 ? pattern_index - 1 : 0]
+            if pattern_index == 0 {
+                find_index += 1
+            }
+        }
+    }
+    
+    return pattern_index == pattern.count ? find_index : -1
+}
+
+search_KMP("AABCBCDDHFIAWHIOAADNBIHBIOAIOHOLAABCBCDABCQOPEJFJWOPQFJOQOABFABWEIOFBJFJABJBB", "ABCBCDABC")
