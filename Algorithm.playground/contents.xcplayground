@@ -5,5 +5,7 @@
         <page name='Selection Sort'/>
         <page name='Insertion Sort'/>
         <page name='Quick Sort'/>
+        <page name='Graph'/>
+        <page name='KMP'/>
     </pages>
 </playground>
